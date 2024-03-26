@@ -11,7 +11,7 @@ const { pageTitle, description, siteName} = Astro.props;
 
 // Format display name
 let displayName;
-if (Astro.url.pathname == "/") {
+if (Astro.url.pathname == "offbrand-demo/") {
 	displayName = siteName
 } else {
 	displayName = pageTitle + " + " + siteName
