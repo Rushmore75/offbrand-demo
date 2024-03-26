@@ -1,0 +1,34 @@
+---
+interface Props {
+    pxWide: number;
+}
+const { pxWide } = Astro.props;
+let multiplyer = (pxWide).toString()+"px";
+
+let adjustment = 1.2; // default to 1.0
+// constant found from origional "stroke width * px" which looked nice
+let strokeMultiplyer = 9.8928 * 240 * adjustment;
+let stroke = strokeMultiplyer / pxWide;
+---
+<style define:vars={{multiplyer}}>
+    svg {
+        width: var(--multiplyer);
+        height: auto;
+        display: inline;
+        position: absolute;
+        top: 67%;
+        left: 0;
+        transform: scale(-1,1); /* flip vertically */
+    }
+</style>
+<svg viewBox="0 0 634.00858 75.043538">
+ <path
+     id="shape0"
+     fill="none"
+     stroke="#000000"
+     stroke-width={stroke}
+     stroke-linecap="round"
+     stroke-linejoin="bevel"
+     d="m 628.98339,70.099008 c 1.332,7.2 -8.685,-46.4866 -15.012,-60.01044 -0.115,-0.2462495 -3.237,-6.6929595 -3.941,-4.7895625 -2.98,8.0521625 6.155,24.4073025 -3.19,30.2024025 -7.229,4.4826 -22.488,-8.0219 -31.401,-7.297 -16.686,1.3569 -30.229,15.4224 -46.414,19.5245 -29.524,7.4829 -61.644,1.5251 -91.451,-1.0988 -140.657,-12.3817 -297.039,-38.5300895 -431.0459992,20.9896"
+     />
+</svg>

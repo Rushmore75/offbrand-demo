@@ -1,0 +1,40 @@
+---
+interface Props {
+    href: string;
+    id?: string;
+    class?: string;
+}
+
+// todo learn what target does again
+const {href, id, class: className, ...rest} = Astro.props;
+let icon = href.startsWith("#") ? "link" : "open_in_new";
+let target = href.startsWith("#") ? "_self" : "_blank";
+
+---
+<a href={href} id={id} target={target} class={className} {...rest}>
+	<span class="material-symbols-outlined" aria-label={icon}>{icon}</span>
+    <slot />
+</a>
+<style>
+    span[aria-label="open_in_new"] {
+        transform: translateY(-0.05em);
+    }
+    span {
+		overflow: hidden;
+        display: none;
+        position: relative;
+        align-items: center;
+    }
+    a {
+        display: inline-flex;
+        text-decoration: none;
+        overflow: hidden;
+        align-content: baseline;
+    }
+    a:focus-visible {
+        outline: none;
+    }
+    a:hover span {
+        display: inherit;
+    }
+</style>

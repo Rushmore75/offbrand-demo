@@ -1,0 +1,26 @@
+---
+import Link from "./Link.astro";
+
+interface Props {
+    name: string;
+}
+
+const {name} = Astro.props;
+---
+<div>
+    <Link href={"#" + name.toLowerCase()} id={name.toLocaleLowerCase()} class="link">{name}</Link>
+</div>
+
+<style>
+    div {
+        display: flex;
+        justify-content: center;
+        font-size: 1.25em;
+    }
+    .link {
+        font-weight: bold;
+        display: flex;
+        text-align: center;
+        color: black;
+    }
+</style>

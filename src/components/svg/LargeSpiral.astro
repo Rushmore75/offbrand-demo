@@ -1,0 +1,41 @@
+---
+interface Props {
+    scale: number;
+}
+const { scale } = Astro.props;
+let multiplyer = (scale * 100).toString()+"%";
+---
+<style define:vars={{multiplyer}}>
+    svg {
+        width: var(--multiplyer);
+        height: auto;
+
+        display: inline;
+        position: absolute;
+        right: 15vw;
+
+        animation: wobble 2s;
+        animation-direction: alternate;
+        animation-iteration-count: infinite;
+        animation-timing-function: cubic-bezier(0.5, 0, 0.5, 1)
+    }
+    @keyframes wobble {
+        0% {
+            transform: rotate(5deg);
+        }
+        100% {
+            transform: rotate(-5deg);
+        }
+        
+    }
+</style>
+<svg viewBox="0 0 202.591 215.92979">
+ <path
+     fill="none"
+     stroke="#000000"
+     stroke-width="9.99"
+     stroke-linecap="round"
+     stroke-linejoin="bevel"
+     d="m 87.948141,111.33794 c 0,-6.16 12.990899,-9.6993 17.618599,-8.1707 28.091,9.2787 -3.2856,74.8257 -38.782099,35.9217 -38.1687,-41.832498 18.3245,-99.447098 60.675099,-61.841698 45.216,40.148698 10.814,110.194698 -55.358099,102.552698 -60.30849,-6.965 -58.94965,-137.033998 9.487,-144.531798 98.175099,-10.756 125.052099,118.978798 38.678099,165.662798 -92.501499,49.996 -147.814699,-99.1832 -94.036599,-164.582798 38.541,-46.8698 102.761599,-37.6090402 138.761599,4.0852 7.323,8.4815 18.128,13.251 21.789,24.5583 4.996,15.4329 8.604,82.318298 8.757,82.455298"
+     />
+</svg>

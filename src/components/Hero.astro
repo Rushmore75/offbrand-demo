@@ -1,0 +1,121 @@
+---
+// automagically knows the video is in /public
+import video from "/test.mp4";
+import SmallSpiral from "./svg/SmallSpiral.astro";
+import Underline from "./svg/Underline.astro";
+---
+
+<div class="hero">
+  <div class="welcome">
+    <span class="video-container">
+      <div class="radius">
+        <video autoplay muted loop src={video} class="video right-video">Showcase video #1</video>
+      </div>
+      <SmallSpiral scale={0.12}/>
+      <!-- <LargeSpiral scale={0.15}/> -->
+    </span>
+    <div class="hero-text">
+      <h1 class="tag-one tag title">Creating that which <span class="hit">Inspires<Underline pxWide={330}/></span></h1>
+      <h1 class="tag-two tag title">For the audiance we <span class="hit">Love<Underline pxWide={183}></span></h1>
+    </div>
+  </div>
+</div>
+<style is:global>
+  * {
+    overflow-x: hidden;
+  }
+</style>
+<style>
+  .hero {
+    position: relative;
+    z-index: 1;
+    background-color: rgb(var(--bg-light));
+  }
+  .video-container {
+    display: flex;
+  }
+  .hero-text {
+    margin: auto;
+    position: relative;
+    max-width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  @media screen and (max-width: 1200px) {
+    .hero-text {
+      max-width: 90%;
+    }
+  }
+  @media screen and (max-width: 660px) {
+    .video-container {
+      display: none;
+    }
+    .hero-text {
+      max-width: 100%;
+    }
+    .tag {
+		  padding: calc(1.5rem - 1px);
+      border-radius: 2rem;
+      background-color: rgba(0,0,0, 10%)
+    }
+  }
+  .radius {
+    margin: auto;
+    line-height: 0;
+  }
+  .video {
+    margin: auto;
+    /* position: fixed; */
+    /* min-height: 100%; */
+    width: 75%;
+    border-radius: 3em;
+    z-index: -100;
+    --end-opacity: 0.6;
+    --time: 2s;
+    --x-end-offset: 0%;
+    --x-start-offset: 110%;
+    animation-iteration-count: 1;
+    opacity: var(--end-opacity);
+    position: relative;
+  }
+  .right-video {
+    animation: fadein-right var(--time);
+    animation-fill-mode: forwards;
+  }
+  .welcome {
+    margin-top: 5rem;
+    max-width: 100%;
+  }
+  .tag {
+    z-index: 1;
+    font-size: 4rem;
+    font-weight: 700;
+    margin: 1rem;
+    padding: 0.05em;
+    width: 100%;
+    text-shadow: 2px 2px rgba(0, 0, 0, 20%);
+  }
+  .tag-one {
+    text-align: left;
+  }
+  .tag-two {
+    text-align: right;
+  }
+  .hit {
+    display: inline;
+    color: rgb(var(--accent-light));
+    font-weight: bold;
+    position: relative;
+    text-shadow: 2px 2px rgba(var(--accent-dark));
+  }
+  @keyframes fadein-right {
+    from {
+      opacity: 0;
+      right: var(--x-start-offset);
+    }
+    to {
+      opacity: var(--end-opacity);
+      right: var(--x-end-offset);
+    }
+  }
+</style>

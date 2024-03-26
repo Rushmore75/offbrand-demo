@@ -1,0 +1,130 @@
+---
+import Titlebar from '../components/Titlebar.astro';
+import Link from "../components/Link.astro";
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Anchor from '../components/Anchor.astro';
+import { config } from '../env';
+import Star from '../components/svg/Star.astro';
+
+const {siteName, description} = config;
+---
+
+<Base siteName={siteName} description={description} pageTitle='Home'>
+	<Titlebar links={[["About", "#about"], ["Team", "#team"]]}/>
+	<main>
+		<Hero />
+		<article>
+			<section>
+				<div class="section-text">
+				<p class="title left">Today the world's biggest creators have even bigger ideas</p>
+				<p class="title right white">We make them happen</p>
+				</div>
+				<Star/>
+			</section>
+		<div class="info">
+			<div class="spacer"></div>
+			<Anchor name='Team'/>
+			<div class="about">
+				<p>
+					Made by Oliver because he was board and liked the look at Offbrand's website (or just anything Ottomated has made)
+				</p>
+			</div>
+			<Anchor name='About'/>
+			<div class="about">
+				<p>
+					This site is is trying to be a recreation of Offbrand's website.
+					Coincidentally, they are both written using Astro.
+					However I <i>think</i> that Offbrand's webiste is written by Ottomated, and it might use some css processers.
+					<br><br>
+					I feel that it's important to note that the video and some text are the only things I took ad-hoc from the Offbrand site.
+					Everything else is either mine or Google's.
+				</p>
+			</div>
+			<div class="spacer"></div>
+		</div>
+		</article>
+	</main>
+</Base>
+
+<style>
+	.info {
+		position: relative;
+		z-index: 5;
+    	background-color: rgb(var(--bg-light));
+	}
+	.white {
+		color: white;
+	}
+	.spacer {
+		height: 1rem;
+	}
+	.about {
+		margin-left: 1rem;
+		margin-right: 1rem;
+		text-align: center;
+	}
+	.astro-a {
+		position: absolute;
+		top: -32px;
+		left: 50%;
+		transform: translatex(-50%);
+		width: 220px;
+		height: auto;
+		z-index: -1;
+	}
+	main {
+		font-size: 22px;
+		line-height: 1.6;
+	}
+	article {
+		margin: none;
+		/* max-width: calc(100% - 2rem); */
+	}
+	section {
+		/* margin-top: 3rem; */
+		height: 90vh;
+		background-color: rgb(var(--alt-bg));
+		padding: none;
+		overflow: hidden;
+	}
+	.section-text {
+		display: inline-flex;
+		flex-wrap: wrap;
+		flex-direction: row;
+		align-items: flex-end;
+		justify-content: space-between;
+		margin-left: 3rem;
+		margin-right: 3rem;
+		position: relative;
+		z-index: 10;
+	}
+	.left {
+		text-align: left;
+		max-width: 40%;
+		font-size: 3rem;
+		min-width: 500px;
+		margin-right: 100%;
+	}
+	.right {
+		font-size: 5rem;
+		margin-left: auto;
+		max-width: 820px;
+		text-align: center;
+	}
+	@media screen and (max-width: 1500px) {
+		section {
+			height: fit-content;
+		}	
+	}
+    @media screen and (max-width: 660px) {
+		.left {
+			margin-right: auto;
+		}
+		.section-text {
+			margin-left: 0;
+			margin-right: 0;
+			/* display: block; */
+		}
+	}
+</style>
